@@ -31,7 +31,7 @@ namespace QuestAutomation
         }
 
         [Test]
-        public async Task VerifyTestCasesPageTest()
+        public async Task OpenTestCasesPageTest()
         {
             await Page.GotoAsync("https://automationexercise.com/test_cases");
             await RemoveConsentOverlayIfPresent();
@@ -42,7 +42,7 @@ namespace QuestAutomation
         }
 
         [Test]
-        public async Task VerifyAllProductsAndProductDetailPageTest()
+        public async Task ProductsAndProductDetailPageTest()
         {
             await Page.GotoAsync("https://automationexercise.com/products");
             await RemoveConsentOverlayIfPresent();
@@ -69,7 +69,7 @@ namespace QuestAutomation
         }
 
         [Test]
-        public async Task SubscriptionInHomePageTest()
+        public async Task HomePageTest()
         {
             await Page.GotoAsync("https://automationexercise.com/");
             await RemoveConsentOverlayIfPresent();
@@ -83,7 +83,7 @@ namespace QuestAutomation
         }
 
         [Test]
-        public async Task SubscriptionInCartPageTest()
+        public async Task CartPageTest()
         {
             await Page.GotoAsync("https://automationexercise.com/view_cart");
             await RemoveConsentOverlayIfPresent();
@@ -97,7 +97,7 @@ namespace QuestAutomation
         }
 
         [Test]
-        public async Task ViewCategoryProductsTest()
+        public async Task OpenCategoryProductsPageTest()
         {
             await Page.GotoAsync("https://automationexercise.com/category_products/1");
             await RemoveConsentOverlayIfPresent();
@@ -107,7 +107,7 @@ namespace QuestAutomation
         }
 
         [Test]
-        public async Task ViewBrandProductsTest()
+        public async Task OpenBrandProductsPageTest()
         {
             await Page.GotoAsync("https://automationexercise.com/brand_products/Polo");
             await RemoveConsentOverlayIfPresent();
@@ -140,5 +140,19 @@ namespace QuestAutomation
 
             await Expect(Page.Locator("#slider")).ToBeVisibleAsync();
         }
+
+        [Test]
+        public async Task Additional_LoginWithEmptyCredentialsTest()
+        {
+            await Page.GotoAsync("https://automationexercise.com/login");
+            await RemoveConsentOverlayIfPresent();
+
+            await Page.FillAsync("input[data-qa='login-email']", "");
+            await Page.FillAsync("input[data-qa='login-password']", "");
+            await Page.ClickAsync("button[data-qa='login-button']", new() { Force = true });
+
+            await Expect(Page).ToHaveURLAsync(new Regex("login"));
+        }
+
     }
 }

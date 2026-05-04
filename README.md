@@ -14,6 +14,7 @@ This project contains automated UI tests for https://automationexercise.com/ usi
 - View brand products
 - Scroll up using arrow button
 - Scroll up without arrow button
+- Login with empty credentials (new)
 
 ## Tech Stack
 
